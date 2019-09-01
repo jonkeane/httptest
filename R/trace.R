@@ -59,7 +59,11 @@ quietly <- function (expr) {
 #' @return Nothing; called for its side effects
 #' @export
 stop_mocking <- function () {
+<<<<<<< HEAD
     safe_untrace(untrace(curl::form_file))
+=======
+    untrace(curl::form_file)
+>>>>>>> Fixed file upload hashing on multiple platforms
     invisible(safe_untrace("request_perform", add_headers))
 }
 

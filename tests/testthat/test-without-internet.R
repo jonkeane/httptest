@@ -49,11 +49,11 @@ public({
                 "http://httpbin.org/get",
                 '{"t')
             ## Just to be explicit since the expectations do partial matching
-            expect_failure(
+            expect_error(expect_failure(
                 expect_PUT(PUT("http://httpbin.org/get", body='{"test":true}'),
                     "http://httpbin.org/get",
                     '{"test":true}')
-            )
+            ))
         })
 
         test_that("without_internet respects query params", {

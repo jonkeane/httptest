@@ -37,6 +37,10 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Configure git
+        if: runner.os == 'Windows'
+        run: git config --global core.autocrlf false
+
       - name: Query dependencies
         run: |
           install.packages('remotes')

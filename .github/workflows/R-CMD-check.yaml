@@ -85,7 +85,7 @@ jobs:
         shell: bash
 
       - name: Test coverage
-        if: contains(matrix.config.r, 'release') & runner.os == 'macOS'
+        if: contains(matrix.config.r, 'release') && runner.os == 'macOS'
         run: |
           Rscript -e 'remotes::install_cran("covr")'
           Rscript -e 'covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")'

@@ -71,42 +71,9 @@ test_that("We can then load the mocks it stores", {
     ## Compare the HTML as text because the parsed HTML (XML) object has a
     ## C pointer that is different between the two objects.
     if (.Platform[["OS.type"]] == "windows") {
-        mock_string <- gsub("\\r", "", content(m2, "text"))
-        response_string <- content(r2, "text")
-
-        print(str(substr(mock_string, 8375, nchar(mock_string)), nchar.max = 4000))
-        print(str(substr(response_string, 8375, nchar(response_string)), nchar.max = 4000))
-
-        # On windows (on GH actions) there are both carriage returns written to
-        # the file and extraneous spaces
         expect_identical(
-            substr(mock_string, 1, 8425),
-            substr(response_string, 1, 8425)
-        )
-
-        expect_identical(
-            substr(mock_string, 8425, 8750),
-            substr(response_string, 8425, 8750)
-        )
-
-        expect_identical(
-            substr(mock_string, 8750, 9000),
-            substr(response_string, 8750, 9000)
-        )
-
-        expect_identical(
-            substr(mock_string, 9000, 9250),
-            substr(response_string, 9000, 9250)
-        )
-
-        expect_identical(
-            substr(mock_string, 9250, 9500),
-            substr(response_string, 9250, 9500)
-        )
-
-        expect_identical(
-            substr(mock_string, 9500, nchar(mock_string)),
-            substr(response_string, 9500, nchar(response_string))
+            gsub("[ \t\r\n]", "", content(m2, "text")),
+            gsub("[ \t\r\n]", "", content(r2, "text"))
         )
     } else {
         expect_identical(content(m2, "text"), content(r2, "text"))

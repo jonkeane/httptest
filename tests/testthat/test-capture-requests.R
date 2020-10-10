@@ -74,7 +74,7 @@ test_that("We can then load the mocks it stores", {
         from_mock <- gsub("[ \t\r\n]", "", content(m2, "text"))
         from_resp <- gsub("[ \t\r\n]", "", content(r2, "text"))
 
-        expect_identical(
+        expect_equivalent(
             from_mock,
             from_resp,
             max_lines = 9000

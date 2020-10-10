@@ -74,7 +74,7 @@ test_that("We can then load the mocks it stores", {
         # On windows (on GH actions) there are both carriage returns written to
         # the file and extraneous spaces
         expect_identical(
-            gsub("\\r", "", content(m2, "text")),
+            gsub("  +", " ", gsub("\\r", "", content(m2, "text"))),
             gsub("  +", " ", content(r2, "text"))
         )
     } else {

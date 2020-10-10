@@ -83,6 +83,31 @@ test_that("We can then load the mocks it stores", {
             substr(mock_string, 1, 8425),
             substr(response_string, 1, 8425)
         )
+
+        expect_identical(
+            substr(mock_string, 8425, 8750),
+            substr(response_string, 8425, 8750)
+        )
+
+        expect_identical(
+            substr(mock_string, 8750, 9000),
+            substr(response_string, 8750, 9000)
+        )
+
+        expect_identical(
+            substr(mock_string, 9000, 9250),
+            substr(response_string, 9000, 9250)
+        )
+
+        expect_identical(
+            substr(mock_string, 9250, 9500),
+            substr(response_string, 9250, 9500)
+        )
+
+        expect_identical(
+            substr(mock_string, 9500, nchar(mock_string)),
+            substr(response_string, 9500, nchar(response_string))
+        )
     } else {
         expect_identical(content(m2, "text"), content(r2, "text"))
     }

@@ -74,14 +74,14 @@ test_that("We can then load the mocks it stores", {
         mock_string <- gsub("\\r", "", content(m2, "text"))
         response_string <- content(r2, "text")
 
-        warning(str(substr(mock_string, 8375, nchar(mock_string))))
-        warning(str(substr(response_string, 8375, nchar(response_string))))
+        warning(str(substr(mock_string, 8487, nchar(mock_string))))
+        warning(str(substr(response_string, 8487, nchar(response_string))))
 
         # On windows (on GH actions) there are both carriage returns written to
         # the file and extraneous spaces
         expect_identical(
-            substr(mock_string, 1, 8375),
-            substr(response_string, 1, 8375)
+            substr(mock_string, 1, 8487),
+            substr(response_string, 1, 8487)
         )
     } else {
         expect_identical(content(m2, "text"), content(r2, "text"))

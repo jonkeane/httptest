@@ -71,8 +71,8 @@ test_that("We can then load the mocks it stores", {
     ## Compare the HTML as text because the parsed HTML (XML) object has a
     ## C pointer that is different between the two objects.
     if (.Platform[["OS.type"]] == "windows") {
-        from_mock <- gsub("[ \t\r\n\h\v]", "", content(m2, "text"))
-        from_resp <- gsub("[ \t\r\n\h\v]", "", content(r2, "text"))
+        from_mock <- gsub("[ \\t\\r\\n\\h\\v]", "", content(m2, "text"))
+        from_resp <- gsub("[ \\t\\r\\n\\h\\v]", "", content(r2, "text"))
 
         expect_equivalent(
             from_mock,

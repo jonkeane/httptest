@@ -70,19 +70,17 @@ test_that("We can then load the mocks it stores", {
     expect_identical(content(m1), content(r1))
     ## Compare the HTML as text because the parsed HTML (XML) object has a
     ## C pointer that is different between the two objects.
-    expect_identical(
-        gsub("\\r", "", content(m2, "text")),
-        gsub("  +", " ", content(r2, "text"))
-    )
-    expect_identical(
-        substr(gsub("\\r", "", content(m2, "text")), 1, 8375),
-        substr(content(r2, "text"), 1, 8375)
-    )
+    if (.Platform[["OS.type"]] == "windows") {
+        # On windows (on GH actions) there are both carriage returns written to
+        # the file and extraneous spaces
+        expect_identical(
+            gsub("\\r", "", content(m2, "text")),
+            gsub("  +", " ", content(r2, "text"))
+        )
+    } else {
+        expect_identical(content(m2, "text"), content(r2, "text"))
+    }
 
-    expect_identical(
-        substr(gsub("\\r", "", content(m2, "text")), 8375, 8500),
-        substr(content(r2, "text"), 8375, 8500)
-    )
     expect_true(grepl("</body>", content(m2, "text")))
     expect_identical(content(m3), content(r3))
     expect_identical(content(m4), content(r4))

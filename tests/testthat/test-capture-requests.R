@@ -76,8 +76,8 @@ test_that("We can then load the mocks it stores", {
     )
 
     expect_identical(
-        substr(gsub("\\r", "", content(m2, "text")), 9000, 9591),
-        substr(content(r2, "text"), 9000, 9591)
+        substr(gsub("\\r", "", content(m2, "text")), 7500, 8000),
+        substr(content(r2, "text"), 7500, 8000)
     )
     expect_true(grepl("</body>", content(m2, "text")))
     expect_identical(content(m3), content(r3))

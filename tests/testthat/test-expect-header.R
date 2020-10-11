@@ -29,9 +29,9 @@ public({
             expect_POST(expect_success(expect_header(POST("http://httpbin.org/",
                 config=add_headers(Accept="image/jpeg")),
                 "Accept: image/jpeg")))
-            expect_error(expect_failure(expect_header(expect_POST(POST("http://httpbin.org/",
+            expect_failure(expect_header(expect_POST(POST("http://httpbin.org/",
                 config=add_headers(Accept="image/png")), silent=TRUE),
-                "Accept: image/jpeg")))
+                "Accept: image/jpeg"))
         })
         test_that("expect_header ignore.case", {
             expect_success(expect_header(GET("api/object1/",
